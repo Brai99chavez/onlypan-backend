@@ -3,14 +3,14 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
-
-let sequelize = new Sequelize("postgresql://postgres:Xw5StqivQYYOOLZQIqUH@containers-us-west-22.railway.app:6493/railway", {
-        logging: false,
-        native: false,
-      });
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: "postgres",
+  protocol: "postgres",
+  logging: false,
+  native: false,
+});
 
 const basename = path.basename(__filename);
-
 const modelDefiners = [];
 
 fs.readdirSync(path.join(__dirname, '/models'))
@@ -23,11 +23,13 @@ fs.readdirSync(path.join(__dirname, '/models'))
   });
 
 modelDefiners.forEach((model) => model(sequelize));
+
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [
   entry[0][0].toUpperCase() + entry[0].slice(1),
   entry[1],
 ]);
+
 sequelize.models = Object.fromEntries(capsEntries);
 
 const {
