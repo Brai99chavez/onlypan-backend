@@ -1,8 +1,6 @@
 const Stripe = require('stripe');
 const { Order, User, Product } = require('../../db');
-const stripe = new Stripe(
-  'sk_test_51LaJmxF13fYbs0Bsyd7oDYOhUbc6PCcf21MN9NsApSzpBZm2b2snrh9U2zLYIpdulR4eeJHIPpzmLKYvKCHko45200WdqvMQLi'
-);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const payment = async (req, res) => {
   const { id, amount, delivery, obj } = req.body;

@@ -28,7 +28,7 @@ cd onlypan-backend
 npm install
 ```
 
-Creá un archivo `.env` con `DATABASE_URL` (la dirección de tu base). Para los mails hacen falta `CLIENT_ID`, `CLIENT_SECRET`, `REDIRECT_URI` y `REFRESH_TOKEN` de Gmail.
+Copiá `.env.example` a `.env` y completá `DATABASE_URL` (la dirección de tu base) y `STRIPE_SECRET_KEY` (tu clave de prueba de Stripe). Para los mails hacen falta `CLIENT_ID`, `CLIENT_SECRET`, `REDIRECT_URI` y `REFRESH_TOKEN` de Gmail.
 
 ```bash
 npm start
